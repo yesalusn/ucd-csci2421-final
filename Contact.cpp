@@ -32,7 +32,7 @@ namespace __yesalusky_database
     __middle_initial(other.__middle_initial), __last_name(other.__last_name),
     __company_name(other.__company_name), __home_phone(other.__home_phone),
     __mobile_phone(other.__mobile_phone), __work_phone(other.__work_phone),
-    __home_address(other.__home_address), __email(other.__email)
+    __email(other.__email)
     {
         if(!other.__contact_affiliates.empty())
         {
@@ -48,7 +48,7 @@ namespace __yesalusky_database
             __middle_initial = other.__middle_initial; __last_name = other.__last_name;
             __company_name = other.__company_name; __home_phone = other.__home_phone;
             __mobile_phone = other.__mobile_phone; __work_phone = other.__work_phone;
-            __home_address = other.__home_address; __email = other.__email;
+            __email = other.__email;
 
             if(!other.__contact_affiliates.empty())
             {
@@ -106,19 +106,6 @@ namespace __yesalusky_database
     void Contact::setEmail(string email)
     { __email = email; }
 
-    void Contact::setAddress(address new_address)
-    {
-        __home_address.__streetNum = new_address.__streetNum;
-        __home_address.__streetName = new_address.__streetName;
-        __home_address.__city = new_address.__city;
-        __home_address.__state = new_address.__state;
-        __home_address.__zip_code = new_address.__zip_code;
-        for(int i = 0; i < 3; ++i)
-        {
-            __home_address.__country[i] = new_address.__country[i];
-        }
-    }
-
     void Contact::addAffiliate(affiliate new_affiliate)
     {
         __contact_affiliates.push_back(new_affiliate);
@@ -146,11 +133,6 @@ namespace __yesalusky_database
     unsigned Contact::getWorkNum() const
     { return __work_phone; }
 
-    address Contact::getAddress() const
-    {
-        return __home_address;
-    }
-
     list<affiliate> Contact::getAffiliates() const
     {
         return __contact_affiliates;
@@ -167,7 +149,6 @@ namespace __yesalusky_database
         os << contact.__work_phone << '\n';
         os << contact.__email << '\n';
         os << contact.__mobile_phone << '\n';
-        os << contact.__home_address << '\n';
         for(auto it = contact.__contact_affiliates.begin();
             it != contact.__contact_affiliates.end(); ++it)
         { os << *it << '\n';}

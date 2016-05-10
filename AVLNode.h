@@ -8,7 +8,7 @@
 
 #include <iostream>
 
-class Contact; //forward declaration of Contact class used in AVLNode
+class Contact;
 
 class AVLNode {
 public:
@@ -40,7 +40,8 @@ public:
     int balance;
 
     /* Node Internal Data */
-    Contact data;
+    typedef Contact contact;
+    contact data;
 };
 
 #endif

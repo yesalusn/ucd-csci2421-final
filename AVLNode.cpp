@@ -4,6 +4,7 @@
  * AVL Tree Base Implementation.
  */
 #include "AVLNode.h"
+#include "Contact.h"
 
 AVLNode::AVLNode()
 {
