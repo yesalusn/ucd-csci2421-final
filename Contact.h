@@ -8,11 +8,13 @@
 #include <iostream>
 #include <string>
 #include <list>
+#include <sstream>
 
 using std::string;
 using std::list;
 using std::ostream;
 using std::istream;
+using std::stringstream;
 
 namespace __yesalusky_database
 {
@@ -22,47 +24,55 @@ namespace __yesalusky_database
         string __last_name;
         unsigned __phone;
         string __email;
+        bool operator==(affiliate b)
+        {return (__first_name == b.__first_name) && (__last_name == b.__last_name)
+                && (__email == b.__email) && (__phone == b.__phone);};
     };
-
     class Contact
     {
-        static unsigned int __idGen;
         unsigned __id;
         string __first_name;
-        char __middle_initial;
+        string __middle_name;
         string __last_name;
         string __company_name;
         unsigned __home_phone;
         unsigned __mobile_phone;
         unsigned __work_phone;
-        int __streetNum;
-        string __streetName;
+        unsigned __street_num;
+        string __street_name;
         string __city;
         string __state;
         unsigned __zip_code;
-        char __country[3];
+        string __country;
         string __email;
         list<affiliate> __contact_affiliates;
 
-
     public:
-        Contact();
-        Contact(string,string);
-        Contact(string, string, unsigned);
+
+        //all constructors come with an id either generated or copied
+        Contact(); // default constructor, empty strings for first and last names
+        Contact(unsigned , string,string); // typical constructor, first and last names
+        Contact(unsigned , string, string, string, string, unsigned, unsigned, unsigned,
+                unsigned , string, string, string, unsigned, string, string, list<affiliate>&); // full constructor
         Contact(const Contact &);
         Contact &operator=(const Contact &);
         ~Contact();
         string idPadder(const unsigned&) const;
         //accessors
+        void setID(unsigned);
         void setFName(string);
-        void setMInitial(char);
+        void setMName(string);
         void setLName(string);
-        void setCo(string);
+        void setCoName(string);
         void setHomeNum(unsigned);
-        void setMobile(unsigned);
+        void setMobileNum(unsigned);
         void setWorkNum(unsigned);
+        void setStreetNum(unsigned);
+        void setStreetName(string);
+        void setState(string);
+        void setZip(unsigned);
+        void setCountry(string);
         void setEmail(string);
-        //TODO: MAKE ADDRESS ACCESSORS
         void addAffiliate(affiliate);
         //mutators
         int getID() const;
@@ -72,19 +82,20 @@ namespace __yesalusky_database
         unsigned getHomeNum() const;
         unsigned getMobile() const;
         unsigned getWorkNum() const;
-        //TODO: MAKE ADDRESS MUTATORS
+
         list<affiliate> getAffiliates() const;
+
+        //inlined comparison & relational operators
+        bool operator==(const Contact& b) { return getID() == b.getID(); };
+        bool operator!=(const Contact& b) { return !(getID() == b.getID()); };
+        bool operator<(const Contact& b) { return getID() < b.getID(); };
+        bool operator>(const Contact& b) { return (b.getID() < getID()); };
+        bool operator>=(const Contact& b) { return !(getID() < b.getID()); };
+        bool operator<=(const Contact& b) { return !(b.getID() < getID()); };
+
         friend ostream &operator<<(ostream &, const Contact &);
         friend istream &operator>>(istream &, Contact &);
     };
-
-    //operators
-    bool operator==(const Contact& a, const Contact& b) { return a.getID() == b.getID(); };
-    bool operator!=(const Contact& a, const Contact& b) { return !(a.getID() == b.getID()); };
-    bool operator<(const Contact& a, const Contact& b) { return a.getID() < b.getID(); };
-    bool operator>(const Contact& a, const Contact& b) { return (b.getID() < a.getID()); };
-    bool operator>=(const Contact& a, const Contact& b) { return !(a.getID() < b.getID()); };
-    bool operator<=(const Contact& a, const Contact& b) { return !(b.getID() < a.getID()); };
 }
 
 #endif //FINALPROJECT_CONTACT_H

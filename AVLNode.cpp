@@ -3,99 +3,104 @@
  * University of Colorado Denver
  * AVL Tree Base Implementation.
  */
+
 #include "AVLNode.h"
 #include "Contact.h"
 
-AVLNode::AVLNode()
+namespace __yesalusky_database
 {
-    this->data = Contact();
-    this->balance = 0;
-    this->left = nullptr;
-    this->right = nullptr;
-    this->parent = nullptr;
-}
 
-AVLNode::AVLNode(Contact& data, AVLNode* parent)
-{
-    this->data = Contact(data);
-    this->balance = 0;
-    this->left = nullptr;
-    this->right = nullptr;
-    this->parent = parent;
-}
+    AVLNode::AVLNode()
+    {
+        this->balance = 0;
+        this->left = nullptr;
+        this->right = nullptr;
+        this->parent = nullptr;
+    }
 
-AVLNode::AVLNode(Contact& data, AVLNode* left, AVLNode* right)
-{
-    this->data = Contact(data);
-    this->balance = 0;
-    this->left = left;
-    this->right = right;
-    this->parent = nullptr;
-}
+    AVLNode::AVLNode(Contact &data, AVLNode *parent)
+    {
+        this->data = Contact(data);
+        this->balance = 0;
+        this->left = nullptr;
+        this->right = nullptr;
+        this->parent = parent;
+    }
 
-AVLNode::AVLNode(Contact& data, AVLNode* left, AVLNode* right, int balance)
-{
-    this->data = Contact(data);
-    this->balance = balance;
-    this->left = left;
-    this->right = right;
-    this->parent = nullptr;
-}
+    AVLNode::AVLNode(Contact &data, AVLNode *left, AVLNode *right)
+    {
+        this->data = Contact(data);
+        this->balance = 0;
+        this->left = left;
+        this->right = right;
+        this->parent = nullptr;
+    }
 
-AVLNode::~AVLNode()
-{
-    delete this->left;
-    delete this->right;
-}
+    AVLNode::AVLNode(Contact &data, AVLNode *left, AVLNode *right, int balance)
+    {
+        this->data = Contact(data);
+        this->balance = balance;
+        this->left = left;
+        this->right = right;
+        this->parent = nullptr;
+    }
 
-void AVLNode::setData(Contact& data)
-{
-    this->data = Contact(data);
-}
+    AVLNode::~AVLNode()
+    {
+        delete this->left;
+        delete this->right;
+    }
 
-void AVLNode::setBalance(int bal)
-{
-    this->balance = bal;
-}
+    void AVLNode::setData(Contact &data)
+    {
+        this->data = Contact(data);
+    }
 
-void AVLNode::setLeft(AVLNode* left)
-{
-    this->left = left;
-}
+    void AVLNode::setBalance(int bal)
+    {
+        this->balance = bal;
+    }
 
-void AVLNode::setRight(AVLNode* right)
-{
-    this->right = right;
-}
+    void AVLNode::setLeft(AVLNode *left)
+    {
+        this->left = left;
+    }
 
-Contact& AVLNode::getData() const
-{
-    return this->data;
-}
+    void AVLNode::setRight(AVLNode *right)
+    {
+        this->right = right;
+    }
 
-int AVLNode::getBalance() const
-{
-    return this->balance;
-}
+    Contact &AVLNode::getData()
+    {
+        return this->data;
+    }
 
-const AVLNode* const AVLNode::getLeft() const
-{
-    return this->left;
-}
+    int AVLNode::getBalance() const
+    {
+        return this->balance;
+    }
 
-const AVLNode* const AVLNode::getRight() const
-{
-    return this->right;
-}
+    const AVLNode *const AVLNode::getLeft() const
+    {
+        return this->left;
+    }
 
-bool AVLNode::operator < (const AVLNode& avlNode) const
-{
-    if ( this->data < avlNode.data ) return true;
-    return false;
-}
+    const AVLNode *const AVLNode::getRight() const
+    {
+        return this->right;
+    }
 
-std::ostream& operator << (std::ostream& out, const AVLNode& avlNode)
-{
-    out << avlNode.data;
-    return out;
+    bool AVLNode::operator<(const AVLNode &avlNode)
+    {
+        if (data < avlNode.data) return true;
+        return false;
+    }
+
+    std::ostream &operator<<(std::ostream &out, const AVLNode &avlNode)
+    {
+        out << avlNode.data;
+        return out;
+    }
+
 }

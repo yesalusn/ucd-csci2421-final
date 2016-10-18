@@ -7,41 +7,54 @@
 #define AVLNode_H
 
 #include <iostream>
+#include "Contact.h"
 
-class Contact;
+namespace __yesalusky_database
+{
+    class Contact;
 
-class AVLNode {
-public:
-    AVLNode();
-    AVLNode(Contact&, AVLNode*);
-    AVLNode(Contact&, AVLNode*, AVLNode*);
-    AVLNode(Contact&, AVLNode*, AVLNode*, int);
-    ~AVLNode();
+    class AVLNode
+    {
+    public:
+        AVLNode();
 
-    void setData(Contact&);
-    void setBalance(int);
-    void setLeft(AVLNode*);
-    void setRight(AVLNode*);
+        AVLNode(Contact &, AVLNode *);
 
-    Contact& getData() const;
-    int getBalance() const;
-    const AVLNode* const getLeft() const;
-    const AVLNode* const getRight() const;
+        AVLNode(Contact &, AVLNode *, AVLNode *);
 
-    bool operator < (const AVLNode&) const;
-    friend std::ostream& operator << (std::ostream&, const AVLNode&);
+        AVLNode(Contact &, AVLNode *, AVLNode *, int);
 
-    /* Tree structure pointers */
-    AVLNode* left;
-    AVLNode* right;
-    AVLNode* parent;
+        ~AVLNode();
 
-    /* AVL Balance Factor */
-    int balance;
+        void setData(Contact &);
 
-    /* Node Internal Data */
-    typedef Contact contact;
-    contact data;
-};
+        void setBalance(int);
 
+        void setLeft(AVLNode *);
+
+        void setRight(AVLNode *);
+
+        Contact &getData();
+
+        int getBalance() const;
+
+        const AVLNode *const getLeft() const;
+
+        const AVLNode *const getRight() const;
+
+        bool operator<(const AVLNode &);
+
+        friend std::ostream &operator<<(std::ostream &, const AVLNode &);
+
+        /* Tree structure pointers */
+        AVLNode *left;
+        AVLNode *right;
+        AVLNode *parent;
+
+        /* AVL Balance Factor */
+        int balance;
+
+        Contact data;
+    };
+}
 #endif
