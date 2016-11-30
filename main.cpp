@@ -1,9 +1,11 @@
 #include <iostream>
+#include "AppFunctions.h"
 
-using namespace std;
-
+using std::cout;
+using std::endl;
 int main()
 {
-    cout << "Hello, World!" << endl;
+    AppFunctions app1;
+    app1.application();
     return 0;
 }
