@@ -67,7 +67,8 @@ Contact &Contact::operator=(const Contact &other)
         __middle_name = other.__middle_name; __last_name = other.__last_name;
         __company_name = other.__company_name; __home_phone = other.__home_phone;
         __mobile_phone = other.__mobile_phone; __work_phone = other.__work_phone;
-        __email = other.__email;
+        __email = other.__email; __street_address = other.__street_address; __city = other.__city;
+        __state = other.__state; __zip_code = other.__zip_code; __country = other.__country;
 
         if(!__contact_affiliates.empty())
         {
@@ -209,18 +210,22 @@ ostream &operator<<(ostream &os, const Contact &contact)
     ss << contact.__state << '\n';
     ss << contact.__country << '\n';
     ss << contact.__zip_code << '\n';
-    auto it = contact.__contact_affiliates.begin();
-    if(it->__first_name.size() > 1)
-        ss << it->__first_name << "; ";
-    if(it->__last_name.size() > 1)
-        ss << it->__last_name << "; ";
-    if(it->__phone.size() > 1)
-        ss << it->__phone << "; ";
-    if(it->__email.size() > 1)
-        ss << it->__email << "; ";
+    if(contact.__contact_affiliates.size() > 0)
+    {
+        auto it = contact.__contact_affiliates.begin();
+        if (it->__first_name.size() > 1)
+            ss << it->__first_name << "; ";
+        if (it->__last_name.size() > 1)
+            ss << it->__last_name << "; ";
+        if (it->__phone.size() > 1)
+            ss << it->__phone << "; ";
+        if (it->__email.size() > 1)
+            ss << it->__email << "; ";
+        ss << ";\n";
+    }
     string contact_string = ss.str();
     os << contact_string;
-    os << "\n|\n\n";
+    os << "|\n";
 
     return os;
 }

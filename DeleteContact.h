@@ -1,7 +1,3 @@
-//
-// Created by Nikki on 11/26/2016.
-//
-
 #ifndef DELETECONTACT_H
 #define DELETECONTACT_H
 

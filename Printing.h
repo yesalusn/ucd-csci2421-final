@@ -1,7 +1,3 @@
-//
-// Created by Nikki on 11/26/2016.
-//
-
 #ifndef PRINTING_H
 #define PRINTING_H
 

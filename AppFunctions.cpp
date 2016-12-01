@@ -1,7 +1,3 @@
-//
-// Created by Nikki on 11/26/2016.
-//
-
 #include "AppFunctions.h"
 
 void AppFunctions::application()
@@ -25,7 +21,7 @@ void AppFunctions::application()
                 break;
         case 4 : menu.addContact(choice);
                  if(choice == 1)
-                     add.fromFile(tree);
+                     add.fromFile(tree); /// TODO: from file not working
                  else
                      add.manual(tree);
                 break;
